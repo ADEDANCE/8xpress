@@ -29,7 +29,10 @@ const LoginScreen = () => {
         <Text style={styles.Forgotpassword}>Forgot password?</Text>
       </Pressable>
 
-      <Pressable style={styles.button}>
+      <Pressable
+        onPress={() => router.replace("/")}
+        style={styles.button}
+      >
         <Text>LOGIN</Text>
       </Pressable>
       <Text style={{ textAlign: "center", color: "#BDBDBD" }}>
