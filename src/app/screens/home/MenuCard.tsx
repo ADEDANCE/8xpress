@@ -1,24 +1,36 @@
 import { colors } from "@/constants/colors";
-import { Image, StyleSheet, Text, View } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import {
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
-const MenuCard = () => {
+type MenuCardProps = {
+  image: ImageSourcePropType;
+  name: String;
+  description: String;
+  price: String;
+};
+
+const MenuCard = ({ image, name, description, price }: MenuCardProps) => {
   return (
     <View style={styles.menucard}>
-      <Image
-        source={require("@/assets/images/jollof-chicken.jpg")}
-        style={styles.image}
-        resizeMode="cover"
-      />
+      <Image source={image} style={styles.image} resizeMode="cover" />
 
       <View style={styles.detail}>
-        <Text style={styles.name}>Party Jollof Rice</Text>
+        <Text style={styles.name}>{name}</Text>
 
-        <Text style={styles.description}>
-          Authentic Nigerian party jollof rice, slow-cooked over firewood for
-          that smoky, irresistible flavor.
-        </Text>
+        <Text style={styles.description}>{description}</Text>
+        <View style={styles.pricerow}>
+          <Text style={styles.price}>{price}</Text>
 
-        <Text style={styles.price}>₦1,500</Text>
+          <View style={styles.addbutton}>
+            <Ionicons name="add" size={20} color={colors.white} />
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -64,5 +76,17 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
     marginTop: 10,
+  },
+  pricerow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  addbutton: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: colors.red,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
