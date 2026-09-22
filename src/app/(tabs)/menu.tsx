@@ -1,4 +1,5 @@
 import { colors } from "@/constants/colors";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
   Pressable,
@@ -8,7 +9,7 @@ import {
   TextInput,
 } from "react-native";
 import CategoryTab from "../screens/home/CategoryTab";
-import MenuCard from "../screens/home/MenuCard";
+import MenuCard from "../screens/menu/MenuCard";
 
 const menuItems = [
   {
@@ -111,6 +112,7 @@ const menuItems = [
 ];
 
 export default function Menu() {
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const [searchText, setSearchText] = useState("");
@@ -165,10 +167,12 @@ export default function Menu() {
       {filteredItems.map((item) => (
         <MenuCard
           key={item.id}
+          id={item.id}
           image={item.image}
           name={item.name}
           description={item.description}
           price={item.price}
+          onPress={() => router.push(`/menu/${item.id}`)}
         />
       ))}
     </ScrollView>
