@@ -2,9 +2,11 @@ import { colors } from "@/constants/colors";
 import { useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import CartCard from "../screens/home/CartCard";
+import { useNavigation, useRouter } from "expo-router";
 
 export default function Cart() {
   const [quantity, setQuantity] = useState(1);
+  const router = useRouter();
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -37,7 +39,7 @@ export default function Cart() {
           <Text style={styles.totalPrice}>₦1,500</Text>
         </View>
 
-        <Pressable style={styles.checkoutButton}>
+        <Pressable style={styles.checkoutButton} onPress={()=> router.push('/orderType/orderTypeScreen')}>
           <Text style={styles.checkoutText}>Checkout</Text>
         </Pressable>
       </View>
